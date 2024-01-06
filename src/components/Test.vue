@@ -42,7 +42,7 @@
         </select>
     </div>
     <div class="products">
-        <Product @openens="openeers" v-for="index in 10" v-bind:key="index" :name="name[index-1+indexPop]" 
+        <Product @openens="openeers" v-for="index in indicate" v-bind:key="index" :name="name[index-1+indexPop]" 
         :price="price[index-1+indexPop]" :desc="desc[index-1+indexPop]" :cat="cat[index-1+indexPop]" 
         :image="image[index-1+indexPop]" :rate="rate[index-1+indexPop]" :count="count[index-1+indexPop]"/>
     </div>
@@ -81,6 +81,7 @@ export default {
             lprice: "",
             ldesc: "",
             lcat: "",
+            indicate: 0,
             linenins: 0,
             limage: "",
             lrate: "",
@@ -139,6 +140,12 @@ export default {
                         this.image.push(this.list[i]["image"])
                         this.count.push(this.list[i]["rating"]["count"])
                         this.rate.push(this.list[i]["rating"]["rate"])
+                    }
+                    if (this.list < 10){
+                        this.indicate = 10
+                    }
+                    else{
+                        this.indicate = this.list.length
                     }
                 })
         },
